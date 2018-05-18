@@ -110,7 +110,10 @@ func main() {
 		}
 		json := convertLine(line)
 		if json != "" {
-			topic.Publish(ctx, &pubsub.Message{Data: []byte(json)}).Get(ctx)
+			_, err := topic.Publish(ctx, &pubsub.Message{Data: []byte(json)}).Get(ctx)
+			if err != nil {
+				log.Fatalln(err)
+			}
 			t := time.Now()
 			fmt.Println(t.Format("2006/01/02 15:04:05"), "Published message to", TopicPtr)
 		}
