@@ -30,6 +30,7 @@ type position struct {
 	Heading   int64   `json:"heading"`
 }
 
+// Format
 // clock	1526120887	hexid	4CC270	ident	ICE470  	squawk	1427	alt	13950	speed	319	airGround	A	lat	51.28232	lon	-0.71182	heading	135
 func convertLine(line string) string {
 	parts := strings.Split(line, "\t")
@@ -74,7 +75,7 @@ func main() {
 	println(fmt.Sprintf("Topic: %s", TopicPtr))
 	println(fmt.Sprintf("Keyfile: %s", KeyfilePtr))
 
-	// Setup Pub/Sub
+	// Setup Pub/Sub Connection
 	ctx := context.Background()
 	var pubsubClient *pubsub.Client
 	var err error
